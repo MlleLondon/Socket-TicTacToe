@@ -23,9 +23,11 @@ et
 Puis dans chacun des environnement installer pygame et pyperclip
 
 ```pip install pygame```
+
 ```pip install pyperclip```
 
 Le joueur 1 lance server.py tandis que le joueur 2 lance client.py
 
 host : 127.0.0.1
+
 port : 65432
