@@ -14,7 +14,7 @@ def create_thread(target):
 
 
 #Définition de l'adresse et du port pour la connexion
-HOST = "127.0.0.1" #Adresse locale
+HOST = socket.gethostbyname(socket.gethostname()) #Adresse IP locale dynamique
 PORT = 65432 #Port d'écoute
 
 ADDR = (HOST,PORT)
@@ -98,6 +98,13 @@ def waiting_for_connection():
 #Créer un thread pour attendre la connexion du client
 create_thread(waiting_for_connection)
 
+# Fonction pour dessiner du texte sur la fenêtre
+def draw_text(surface, text, pos, font_size=24, color=(255, 255, 255)):
+    font = pygame.font.Font(None, font_size)  # Police par défaut
+    text_surface = font.render(text, True, color)
+    surface.blit(text_surface, pos)
+
+
 def main() :
     global running, turn, grid, player, playing, clock
 
@@ -150,6 +157,8 @@ def main() :
 
         #Dessine la grille et rafraîchit l'affichage
         grid.draw(win)
+         # Ajouter l'adresse IP sur l'écran
+        draw_text(win, f"IP: {HOST}:{PORT}", (10, 10), font_size=30, color=(255, 255, 255))
         pygame.display.flip()
 
 main()
